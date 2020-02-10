@@ -4,31 +4,41 @@ def contains(text, pattern):
     """Return a boolean indicating whether pattern occurs in text."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    return find_index(text, pattern)
+    return True if pattern in text else False
 
 def find_index(text, pattern):
     """Return the starting index of the first occurrence of pattern in text,
     or None if not found."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    pattern_index = 0
-    text_index = 0
-    while text[text_index] != pattern[0]:
-        text_index += 1
-    while text[text_index] == pattern[pattern_index]:
-        pattern_index += 1 
-        if text[text_index] != pattern[pattern_index]:
-            return False 
-        return True 
-
-
-
-    
-
+    t_index = 0
+    p_index = 0
+    while t_index < len(text):
+        if text[t_index] == pattern[p_index]:
+            if p_index == len(pattern) - 1:
+                return t_index - p_index
+            p_index += 1
+            t_index += 1
+        elif text[t_index] != pattern[p_index]:
+            if p_index != 0:
+                t_index -= p_index - 1
+                p_index = 0 
+            else:
+                t_index += 1 
+    return None
 
 
             
+                
 
+        
+        
+
+
+
+
+        
+        
         
 def find_all_indexes(text, pattern):
     """Return a list of starting indexes of all occurrences of pattern in text,
@@ -69,3 +79,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    # print(find_index("looper", "er"))

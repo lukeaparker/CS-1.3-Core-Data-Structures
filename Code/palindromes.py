@@ -32,7 +32,6 @@ def is_palindrome_iterative(text):
     
 
 def is_palindrome_recursive(text, left=None, right=None):
-    print('hello')
     if len(text) == 0 or len(text) == 1:
         return True
     elif left >= right:

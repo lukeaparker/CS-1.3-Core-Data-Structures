@@ -13,7 +13,7 @@ def is_palindrome(text):
     # implement is_palindrome_iterative and is_palindrome_recursive below, then
     # change this to call your implementation to verify it passes all tests
     assert isinstance(text, str), 'input is not a string: {}'.format(text)
-    return is_palindrome_recursive(text, left=0, right=len(text) - 1)
+    return is_palindrome_recursive(text, left, right)
 
 def is_palindrome_iterative(text):
     # TODO: implement the is_palindrome function iteratively here
@@ -22,26 +22,55 @@ def is_palindrome_iterative(text):
     index_stop = text_len - 1
 
     while index_start < index_stop:
+        while text[index_start].isalpha() is False:
+            index_start += 1
+
+        #Decrement until alphabetic characters are hit
+        while text[index_stop].isalpha() is False:
+            index_stop -= 1
+
+        if text[index_start].lower() != text[index_stop].lower():
+            return False
+
         if text[index_start] != text[index_stop]:
-            print('not')
-            break 
-        elif text[index_start] == text[index_stop]:
-            print('yes')
-            index_start +=1
-            index_stop -= 1 
+            return False            
+            
+        index_start +=1
+        index_stop -= 1 
+    return True
+
     
 
-def is_palindrome_recursive(text, left=None, right=None):
+def is_palindrome_recursive(text, left, right):
+
+    if left >= right:
+        return True
+
     if len(text) == 0 or len(text) == 1:
         return True
-    elif left >= right:
-        return True 
+
     
-    if text[left] != text[right]:
-        return print('false')
-    elif text[left] == text[right]:
-        print('true')
+
+    #check if valid input then increment
+    if text[left].isalpha() is False:
+        return is_palindrome_recursive(text, left=left+1, right=right)
+
+    #check if valid input then increment
+    if text[right].isalpha() is False:
+        return is_palindrome_recursive(text, left=left, right=right-1)
+
+    if text[left].lower() != text[right].lower():
+        return False
+ 
+
+    #advance positions
+    if text[left].lower() == text[right].lower() and left < right:
         return is_palindrome_recursive(text, left=left+1, right=right-1)
+    elif left >= right:
+        return True
+    else:
+        return False
+
 
 
 

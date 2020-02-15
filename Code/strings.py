@@ -26,27 +26,14 @@ def find_index(text, pattern):
             else:
                 t_index += 1 
     return None
-
-
             
-                
-
-        
-        
-
-
-
-
-        
-        
-        
 def find_all_indexes(text, pattern):
     """Return a list of starting indexes of all occurrences of pattern in text,
     or an empty list if not found."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement find_all_indexes here (iteratively and/or recursively)
-
+    
 
 def test_string_algorithms(text, pattern):
     found = contains(text, pattern)

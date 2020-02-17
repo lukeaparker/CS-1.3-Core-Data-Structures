@@ -25,22 +25,26 @@ class LinkedQueue(object):
 
     def length(self):
         """Return the number of items in this queue."""
+        if self.is_empty():
+            return 0
         return self.list.length()
 
     def enqueue(self, item):
         """Insert the given item at the back of this queue.
-        Running time: O(???) – Why? [TODO]"""
+        Running time: O(1) – Appends to end of list"""
         self.list.append(item)
 
     def front(self):
         """Return the item at the front of this queue without removing it,
         or None if this queue is empty."""
+        if self.is_empty():
+            return None
         return self.list.head.data
 
     def dequeue(self):
         """Remove and return the item at the front of this queue,
         or raise ValueError if this queue is empty.
-        Running time: O(1) – Why? [TODO]"""
+        Running time: O(1) – Changes head to next ref [TODO]"""
         if self.list.head != None:
             head = self.list.head
             data = self.list.head.data
@@ -68,29 +72,32 @@ class ArrayQueue(object):
 
     def is_empty(self):
         """Return True if this queue is empty, or False otherwise."""
-        if len(self.list) > 0:
+        if len(self.list) <= 0:
             return True 
-        else:
-            False 
+        return False 
 
     def length(self):
         """Return the number of items in this queue."""
+        if self.is_empty():
+            return 0
         return len(self.list)
 
     def enqueue(self, item):
         """Insert the given item at the back of this queue.
-        Running time: O(1) – Why? [TODO]"""
+        Running time: O(1) – Appending to end of list [TODO]"""
         self.list.append(item)
 
     def front(self):
         """Return the item at the front of this queue without removing it,
         or None if this queue is empty."""
+        if self.is_empty():
+            return None
         return self.list[0]
 
     def dequeue(self):
         """Remove and return the item at the front of this queue,
         or raise ValueError if this queue is empty.
-        Running time: O(???) – Why? [TODO]"""
+        Running time: O(n) –  Shifts indicies to ajust """
         if self.is_empty():
             raise ValueError('Queue is empty')
         else:
@@ -98,5 +105,5 @@ class ArrayQueue(object):
 
 # Implement LinkedQueue and ArrayQueue above, then change the assignment below
 # to use each of your Queue implementations to verify they each pass all tests
-Queue = LinkedQueue
+Queue = ArrayQueue
 # Queue = ArrayQueue

@@ -28,29 +28,32 @@ class LinkedStack(object):
 
     def length(self):
         """Return the number of items in this stack."""
-        return self.list.length
+        return self.list.length()
 
 
     def push(self, item):
         """Insert the given item on the top of this stack.
-        Running time: O(???) – Why? [TODO]"""
+        Running time: O(1) – reassigns next refrence"""
         # TODO: Push given item
         self.list.prepend(item)
 
     def peek(self):
         """Return the item on the top of this stack without removing it,
         or None if this stack is empty."""
+        if self.is_empty():
+            return None
         return self.list.head.data
 
     def pop(self):
         """Remove and return the item on the top of this stack,
         or raise ValueError if this stack is empty.
-        Running time: O(???) – Why? [TODO]"""
+        Running time: O(1) – deletes and reassigns next refrence"""
         if self.is_empty() == True:
             raise ValueError
         else:
             node = self.list.head.data
         self.list.delete(node)
+        return node
 
 
 
@@ -100,13 +103,16 @@ class ArrayStack(object):
 
     def push(self, item):
         """Insert the given item on the top of this stack.
-        Running time: O(???) – Why? [TODO]"""
+        Running time: O(1) – appends to end of list"""
         return self.list.append(item)
 
     def peek(self):
         """Return the item on the top of this stack without removing it,
         or None if this stack is empty."""
-        top = self.list[self.length - 1]
+        if self.is_empty():
+            return None
+
+        top = self.list[self.length() - 1]
         return top
 
 
@@ -114,9 +120,9 @@ class ArrayStack(object):
     def pop(self):
         """Remove and return the item on the top of this stack,
         or raise ValueError if this stack is empty.
-        Running time: O(???) – Why? [TODO]"""
+        Running time: O(n) – has to shift indicies"""
         if self.is_empty() == True:
-            return None
+            raise ValueError('Stack is empty')
         else:
             return self.list.pop()
 
@@ -133,4 +139,4 @@ class ArrayStack(object):
 #     print(stack.peek())
 # test_stack()
 
-Stack = ArrayStack    
+Stack = LinkedStack    

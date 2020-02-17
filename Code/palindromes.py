@@ -16,7 +16,6 @@ def is_palindrome(text):
     # return is_palindrome_recursive(text, left=None, right=None)
 
 def is_palindrome_iterative(text):
-    O('n')
     # TODO: implement the is_palindrome function iteratively here
     text_len = len(text)
     index_start = 0

@@ -12,8 +12,7 @@ def is_palindrome(text):
     backwards, ignoring punctuation, whitespace, and letter casing."""
     # implement is_palindrome_iterative and is_palindrome_recursive below, then
     # change this to call your implementation to verify it passes all tests
-    assert isinstance(text, str), 'input is not a string: {}'.format(text)
-    # return is_palindrome_recursive(text, left=None, right=None)
+    return is_palindrome_iterative(text)
 
 def is_palindrome_iterative(text):
     # TODO: implement the is_palindrome function iteratively here
@@ -21,39 +20,25 @@ def is_palindrome_iterative(text):
     index_start = 0
     index_stop = text_len - 1
 
-    while index_start < index_stop:
-        while text[index_start].isalpha() is False:
+    while index_start <= index_stop:
+        while text[index_start].isalnum() is False:
             index_start += 1
 
         #Decrement until alphabetic characters are hit
-        while text[index_stop].isalpha() is False:
+        while text[index_stop].isalnum() is False:
             index_stop -= 1
 
         if text[index_start].lower() != text[index_stop].lower():
             return False
+        
+        
 
-        if text[index_start] != text[index_stop]:
-            return False            
-            
+        
         index_start +=1
         index_stop -= 1 
     return True
 
     
-
-def is_palindrome_recursive(text, left, right):
-    'time complexity = O(n)'
-    while left >= right:
-        if text[left].isalpha == False:
-            return is_palindrome_recursive(text, left+1, right)
-        
-        if text[right].isalpha == False:
-            return is_palindrome_recursive(text, left, right-1)
-        if text[left].lower() != text[right].lower():
-                return print('false')
-        else:
-            return is_palindrome_recursive(text, left=left+1, right=right-1)
-        return False
 
 
 
@@ -74,4 +59,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    # main()
+    print(is_palindrome_iterative('no, on!'))

@@ -13,6 +13,13 @@ def find_index(text, pattern):
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     t_index = 0
     p_index = 0
+    if pattern == "":
+        return 0
+    elif len(pattern) == 1:
+        for i, char in enumerate(text):
+            if char == pattern:
+                return i 
+
     while t_index < len(text):
         if text[t_index] == pattern[p_index]:
             if p_index == len(pattern) - 1:
@@ -32,6 +39,31 @@ def find_all_indexes(text, pattern):
     or an empty list if not found."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
+    first_i = []
+    if pattern == "":
+        return [i for i in range(len(text)) ]
+    elif len(pattern) == 1:
+        return [i for i, char in enumerate(text) if char == pattern ]
+
+
+    t_index = 0
+    p_index = 0
+    while t_index < len(text):
+        print((t_index, p_index), (len(text), len(pattern)))
+        if text[t_index] == pattern[p_index]:
+            if p_index == len(pattern) - 1:
+                first_i.append(t_index - p_index)
+                t_index -= p_index - 1
+                p_index = 0 
+            p_index += 1
+            t_index += 1
+        elif text[t_index] != pattern[p_index]:
+            if p_index != 0:
+                t_index -= p_index - 1
+                p_index = 0 
+            else:
+                t_index += 1 
+    return first_i
         
 
 def test_string_algorithms(text, pattern):

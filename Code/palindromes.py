@@ -30,6 +30,8 @@ def is_palindrome_iterative(text):
 
         if text[index_start].lower() != text[index_stop].lower():
             return False
+
+
         
         
 

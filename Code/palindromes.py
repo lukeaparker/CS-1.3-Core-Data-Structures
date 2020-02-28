@@ -12,7 +12,7 @@ def is_palindrome(text):
     backwards, ignoring punctuation, whitespace, and letter casing."""
     # implement is_palindrome_iterative and is_palindrome_recursive below, then
     # change this to call your implementation to verify it passes all tests
-    return is_palindrome_iterative(text)
+    return is_palindrome_recursive(text)
 
 def is_palindrome_iterative(text):
     # TODO: implement the is_palindrome function iteratively here
@@ -39,6 +39,29 @@ def is_palindrome_iterative(text):
         index_start +=1
         index_stop -= 1 
     return True
+
+def is_palindrome_recursive(text, index_start=None, index_stop=None):
+    text_length = len(text)
+    if text_length < 2:
+        return True
+    if index_start == None:
+        index_start = 0
+    if index_stop == None:
+        index_stop = text_length - 1
+
+    if text[index_start].isalpha() != True:
+        return is_palindrome_recursive(text, index_start+1, index_stop)
+    if text[index_stop].isalpha() != True:
+        return is_palindrome_recursive(text, index_start, index_stop-1)
+    if index_start > index_stop:
+        return True 
+    if text[index_start].lower() != text[index_stop].lower():
+        return False 
+    else:
+        return is_palindrome_recursive(text, index_start+1, index_stop-1)        
+
+
+
 
     
 

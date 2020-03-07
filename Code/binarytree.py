@@ -334,7 +334,7 @@ class BinarySearchTree(object):
         TODO: Running time: ??? Why and under what conditions?
         TODO: Memory usage: ??? Why and under what conditions?
         Best Case: O(1) if root
-        Worst Case: O(Log n) if it is not root"""
+        Worst Ca se: O(Log n) if it is not root"""
         if node is not None:
             visit(node.data)
             self._traverse_post_order_recursive(node.left, visit)

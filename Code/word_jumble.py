@@ -2,24 +2,37 @@ import os
 
 class Jumble:
 
+    def __init__(self):
+        self.dict = self._group()
+
     def _generate_lookup(self):
         with open("/usr/share/dict/words") as f:
             lines = f.read().lower()
             word_list = lines.split('\n')
         lookup = []
         for word in word_list:
-            key = self._generate_id(word)
-            pair = (key, word)
+            word_id = self._generate_id(word)
+            pair = (word_id, word)
             lookup.append(pair)
         return lookup
-
+    
+    def _validate_word(self, word, key_word):
+        for char in word:
+            if len(word) != len(key_word):
+                return False
+            elif char not in key_word:
+                return False
+        for char in key_word:
+            if char not in word:
+                return False
+        return True
+    
     def _generate_id(self, word):
         word_val = 0
         for char in word:
             char_val = ord(char)
             word_val += char_val
-        word_id = word_val * len(word)
-        return word_id
+        return word_val        
     
     def _group(self):
         ano_dict = {}
@@ -29,25 +42,26 @@ class Jumble:
             else:
                 ano_dict.setdefault(key, [word])
         return ano_dict
-        
+    
+    def find_ano(self, key_word):
+        key = self._generate_id(key_word)
+        possible_choices = self.dict.get(key)
+        choice_list = []
+        for word in possible_choices:
+            if self._validate_word(word, key_word) == True:
+                if word != key_word:
+                    choice_list.append(word)
+        return choice_list
 
-
-        
 
     
 
-
-
-
-    
 
 def test():
     jumble = Jumble()
-    print(jumble._generate_id("Listen"))
-    jumble_dict = jumble._group()
-    print(jumble._generate_id("Listen"))
+    print(jumble.find_ano('prouot'))
     
-
+    
 
 
 test()

@@ -1,5 +1,5 @@
 #!python
-
+from queue import Queue
 
 class BinaryTreeNode(object):
 
@@ -336,9 +336,10 @@ class BinarySearchTree(object):
         Best Case: O(1) if root
         Worst Ca se: O(Log n) if it is not root"""
         if node is not None:
-            visit(node.data)
             self._traverse_post_order_recursive(node.left, visit)
             self._traverse_post_order_recursive(node.right, visit)
+            visit(node.data)
+
 
 
         ...
@@ -369,19 +370,21 @@ class BinarySearchTree(object):
         TODO: Running time: ??? Why and under what conditions?
         TODO: Memory usage: ??? Why and under what conditions?"""
         # TODO: Create queue to store nodes not yet traversed in level-order
-        queue = ...
-        # TODO: Enqueue given starting node
-        ...
+        queue = Queue()
+        # TODO: Enqueue given 
+        queue.enqueue(start_node)
         # TODO: Loop until queue is empty
-        while ...:
+        while not queue.is_empty():
             # TODO: Dequeue node at front of queue
-            node = ...
+            node = queue.dequeue()
             # TODO: Visit this node's data with given function
-            ...
+            visit(node.data)
             # TODO: Enqueue this node's left child, if it exists
-            ...
+            if node.left is not None:
+                queue.enqueue(node.left)
             # TODO: Enqueue this node's right child, if it exists
-            ...
+            if node.right is not None:
+                queue.enqueue(node.right)
 
 
 def test_binary_search_tree():

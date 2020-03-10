@@ -26,6 +26,8 @@ class StringsTest(unittest.TestCase):
         assert contains('abc', 'ac') is False  # important to test close cases
         assert contains('abc', 'az') is False  # first letter, but not last
         assert contains('abc', 'abz') is False  # first 2 letters, but not last
+        assert contains('adb', 'abz') is False  # first 2 letters, but not last
+
         # TODO: Write more negative test cases with assert is False statements
         # ...
 
@@ -35,6 +37,8 @@ class StringsTest(unittest.TestCase):
         assert contains('banana', 'na') is True  # multiple occurrences
         assert contains('ababc', 'abc') is True  # overlapping prefix
         assert contains('bananas', 'nas') is True  # overlapping prefix
+        assert contains('apples', 'pple') is True  # overlapping prefix
+
         # TODO: Write more test cases that check complex patterns or edge cases
         # You'll need a lot more than this to test your algorithm's robustness
         # ...

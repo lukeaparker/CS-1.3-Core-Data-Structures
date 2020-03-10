@@ -1,7 +1,9 @@
 #!python
 
 def contains(text, pattern):
-    """Return a boolean indicating whether pattern occurs in text."""
+    """Return a boolean indicating whether pattern occurs in text.
+    O(1) if item is the first that is checked
+    O(n) if the item is the not the first"""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     index_patern = find_index(text, pattern)
@@ -9,12 +11,17 @@ def contains(text, pattern):
         return False
     else:
         return True
+    
 
 def find_index(text, pattern):
     """Return the starting index of the first occurrence of pattern in text,
-    or None if not found."""
+    or None if not found.
+    O(1) if item is the first that is checked
+    O(n) if the item is the not the first"""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
+
+
     t_index = 0
     p_index = 0
     if pattern == "":
@@ -42,7 +49,9 @@ def find_index(text, pattern):
             
 def find_all_indexes(text, pattern):
     """Return a list of starting indexes of all occurrences of pattern in text,
-    or an empty list if not found."""
+    or an empty list if not found.
+    O(1) if item is the first that is checked
+    O(n) if the item is the not the first"""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     first_i = []
